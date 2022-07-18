@@ -39,6 +39,7 @@ function SalesCard() {
         <div className="dsmeta-form-control-container">
           <DatePicker
             selected={minDate}
+            onChangeRaw={(e) => e.preventDefault()}
             onChange={(date: Date) => { setMinDate(date)}}
             className="dsmeta-form-control"
             dateFormat="dd/MM/yyyy"
@@ -47,7 +48,8 @@ function SalesCard() {
         <div className="dsmeta-form-control-container">
           <DatePicker
             selected={maxDate}
-            onChange={(date: Date) => { setMaxDate(date)}}
+            onChangeRaw={(e) => e.preventDefault()}
+            onChange={(date: Date, e) => {setMaxDate(date)}}
             className="dsmeta-form-control"
             dateFormat="dd/MM/yyyy"
           />
@@ -81,7 +83,7 @@ function SalesCard() {
                     <td>R$ {sale.amount.toFixed(2)}</td>
                     <td>
                       <div className="dsmeta-red-btn-container">
-                        <NotificationButton />
+                        <NotificationButton saleId={sale.id}/>
                       </div>
                     </td>
                 </tr>
